@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--
+============================================================
+30. FINAL PROJECT: MINI DASHBOARD APP
+============================================================
+Open this file in a browser. This project deliberately uses
+EVERY major topic from the whole course:
+
+- Variables, operators, conditionals, loops  (01-18)
+- Functions, scope, arrays, objects, errors  (01-18)
+- DOM selecting/modifying/creating/removing  (19-23)
+- Event handling + event delegation           (22)
+- Closures / advanced concepts                 (24)
+- Destructuring and spread                     (25)
+- Promises, async/await, fetch                 (26-28)
+
+HOW TO USE: open DevTools (F12) to see console messages, then
+actually USE the page - type a task, click buttons, click
+"New Quote".
+============================================================
+-->
+<html>
+<head>
+<title>Mini Dashboard Project</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; }
+  .quote-box { background: #f0f0f0; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+  .task-item { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #ddd; }
+  .task-item.done { text-decoration: line-through; color: gray; }
+  input { padding: 8px; width: 70%; }
+  button { padding: 8px 12px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+  <h1>My Mini Dashboard</h1>
+
+  <div class="quote-box">
+    <p id="quote-text">Loading a quote...</p>
+    <button id="new-quote-btn">New Quote</button>
+  </div>
+
+  <h2>Task List</h2>
+  <input id="task-input" type="text" placeholder="Add a new task">
+  <button id="add-task-btn">Add</button>
+
+  <div id="task-stats"></div>
+  <ul id="task-list"></ul>
+
+<script>
+  // ==========================================================
+  // SECTION 1: DATA (Objects, Arrays, Constructors)
+  // ==========================================================
+
+  // Each task is an object - this mirrors the Student
+  // constructor pattern from the Objects lessons.
+  function Task(text) {
+    this.text = text;
+    this.done = false;
+  }
+
+  let tasks = [];   // our array of Task objects (global scope, on purpose)
+
+
+  // ==========================================================
+  // SECTION 2: DOM SELECTING (topics 7, 19)
+  // ==========================================================
+
+  let quoteText = document.getElementById("quote-text");
+  let newQuoteBtn = document.getElementById("new-quote-btn");
+  let taskInput = document.getElementById("task-input");
+  let addTaskBtn = document.getElementById("add-task-btn");
+  let taskList = document.getElementById("task-list");
+  let taskStats = document.getElementById("task-stats");
+
+
+  // ==========================================================
+  // SECTION 3: RENDERING TASKS (DOM creating/removing, topic 10)
+  // ==========================================================
+
+  function renderTasks() {
+    // Clear the current list before rebuilding it (simple way
+    // to keep the DOM in sync with our "tasks" array)
+    taskList.innerHTML = "";
+
+    tasks.forEach(function (task, index) {
+      let li = document.createElement("li");
+      li.className = "task-item" + (task.done ? " done" : "");
+
+      let span = document.createElement("span");
+      span.textContent = task.text;
+
+      let doneBtn = document.createElement("button");
+      doneBtn.textContent = task.done ? "Undo" : "Done";
+      doneBtn.dataset.index = index;
+      doneBtn.dataset.action = "toggle";
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.dataset.index = index;
+      deleteBtn.dataset.action = "delete";
+
+      li.appendChild(span);
+      li.appendChild(doneBtn);
+      li.appendChild(deleteBtn);
+      taskList.appendChild(li);
+    });
+
+    updateStats();
+  }
+
+  // Array methods: filter (topic 6/arrays), used for the stats line
+  function updateStats() {
+    let completed = tasks.filter(function (t) { return t.done; }).length;
+    taskStats.textContent = `${completed} of ${tasks.length} tasks done`;
+  }
+
+
+  // ==========================================================
+  // SECTION 4: EVENT HANDLING (topic 9) - adding a task
+  // ==========================================================
+
+  addTaskBtn.addEventListener("click", function () {
+    let text = taskInput.value.trim();   // string method: trim()
+
+    // Conditional + basic validation
+    if (text === "") {
+      alert("Please type a task first.");
+      return;
+    }
+
+    tasks.push(new Task(text));   // array method + constructor
+    taskInput.value = "";
+    renderTasks();
+  });
+
+  // Bonus: allow pressing Enter in the input box too (event object)
+  taskInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      addTaskBtn.click();
+    }
+  });
+
+
+  // ==========================================================
+  // SECTION 5: EVENT DELEGATION (topic 9) - done/delete buttons
+  // ==========================================================
+  //
+  // Instead of adding a listener to every button individually,
+  // we listen ONCE on the parent <ul> and check which button
+  // was actually clicked, using dataset attributes we set above.
+
+  taskList.addEventListener("click", function (event) {
+    let index = event.target.dataset.index;
+    let action = event.target.dataset.action;
+
+    if (action === undefined) return;   // click wasn't on a button
+
+    index = Number(index);   // dataset values are always strings - convert to number
+
+    if (action === "toggle") {
+      tasks[index].done = !tasks[index].done;   // flip true/false
+    } else if (action === "delete") {
+      tasks.splice(index, 1);   // remove 1 item at that position
+    }
+
+    renderTasks();
+  });
+
+
+  // ==========================================================
+  // SECTION 6: FETCH + ASYNC/AWAIT + ERROR HANDLING (26, 27, 28)
+  // ==========================================================
+
+  async function loadQuote() {
+    quoteText.textContent = "Loading...";
+
+    try {
+      let response = await fetch("https://api.quotable.io/random");
+      let data = await response.json();
+
+      // Destructuring (topic 12) - pulling what we need straight
+      // out of the response object
+      let { content, author } = data;
+
+      quoteText.textContent = `"${content}" — ${author}`;
+    } catch (error) {
+      // If the network/API fails, don't crash - show a fallback
+      quoteText.textContent = "Could not load a quote right now. Try again!";
+      console.log("Fetch error:", error.message);
+    }
+  }
+
+  newQuoteBtn.addEventListener("click", loadQuote);
+
+
+  // ==========================================================
+  // SECTION 7: STARTUP - run once when the page first loads
+  // ==========================================================
+
+  tasks.push(new Task("Finish JavaScript course"));
+  tasks.push(new Task("Build the capstone project"));
+  renderTasks();
+  loadQuote();
+
+</script>
+
+</body>
+</html>
+
+
+<!--
+============================================================
+PROJECT EXTENSION IDEAS (for faster students)
+============================================================
+
+1. Use localStorage to save tasks so they survive a page refresh.
+2. Add a "Clear completed" button that removes every done task
+   at once (use .filter()).
+3. Add a dropdown to filter the list: All / Active / Completed.
+4. Style the "done" quote box differently using classList.
+5. Add a loading spinner (just text like "Loading...") while
+   the quote is being fetched - it's already partly there!
+6. Wrap the whole task-adding logic in its own module file
+   (tasks.mjs) and import it - note: ES modules need to be
+   loaded via <script type="module" src="..."></script> when
+   used in the browser, slightly different from the Node .mjs
+   examples in lesson 29.
+============================================================
+-->

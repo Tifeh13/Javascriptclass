@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+============================================================
+10. CREATING AND REMOVING ELEMENTS (BEGINNER LESSON)
+============================================================
+Open this file in a browser. Uncomment ONE block at a time,
+save, and REFRESH to see each result.
+============================================================
+-->
+<html>
+<head>
+<title>Creating and Removing Elements</title>
+</head>
+<body>
+
+  <h1>Creating and Removing Elements</h1>
+
+  <ul id="fruit-list">
+    <li>Apple</li>
+    <li>Banana</li>
+  </ul>
+
+<script>
+  // ------------------------------------------------------------
+  // PART 1: createElement (build a BRAND NEW element from scratch)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let newItem = document.createElement("li");
+  // newItem.textContent = "Mango";
+  // console.log(newItem);
+  //
+  // // createElement("li") builds a brand-new <li> element in
+  // // JS's memory - but IMPORTANT: it is NOT on the page yet!
+  // // We only just built it, like building a toy but not
+  // // placing it on the shelf yet.
+
+
+  // ------------------------------------------------------------
+  // PART 2: appendChild (actually ADD the new element to the page)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let list = document.getElementById("fruit-list");
+  //
+  // let newItem = document.createElement("li");
+  // newItem.textContent = "Mango";
+  //
+  // list.appendChild(newItem);
+  //
+  // // .appendChild(element) places the new element as the LAST
+  // // child inside "list". NOW it actually shows up on the page.
+
+
+  // ------------------------------------------------------------
+  // PART 3: ADDING MULTIPLE NEW ELEMENTS WITH A LOOP
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let list = document.getElementById("fruit-list");
+  // let moreFruits = ["Orange", "Grape", "Pineapple"];
+  //
+  // moreFruits.forEach(function (fruit) {
+  //   let item = document.createElement("li");
+  //   item.textContent = fruit;
+  //   list.appendChild(item);
+  // });
+  //
+  // // For each fruit in the array, we build a NEW <li>, give it
+  // // text, and append it - repeating createElement + appendChild
+  // // for every item in the list.
+
+
+  // ------------------------------------------------------------
+  // PART 4: removeChild (remove a SPECIFIC child from a parent)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let list = document.getElementById("fruit-list");
+  // let firstItem = list.firstElementChild;   // grabs the first <li> inside list
+  //
+  // list.removeChild(firstItem);
+  //
+  // // removeChild(childElement) removes that ONE specific child
+  // // from its parent. You must call it ON THE PARENT, naming
+  // // WHICH child to remove.
+
+
+  // ------------------------------------------------------------
+  // PART 5: .remove() (the MODERN, simpler way to remove)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let list = document.getElementById("fruit-list");
+  // let firstItem = list.firstElementChild;
+  //
+  // firstItem.remove();
+  //
+  // // .remove() is called DIRECTLY on the element you want gone -
+  // // no need to go through its parent. This is the modern,
+  // // simpler way most developers use today.
+
+</script>
+
+</body>
+</html>
+
+
+<!--
+============================================================
+PART 6: TRY IT YOURSELF (give this to students as a task)
+============================================================
+
+1. Create a new <li> with the text "Watermelon" and append it
+   to the fruit list.
+2. Using an array of 3 of your favorite foods, loop through it
+   and add each one as a new <li>.
+3. Remove the LAST item in the list using .lastElementChild and
+   .remove().
+
+Write your answer inside the <script> tag, below this comment.
+
+
+============================================================
+QUICK SUMMARY (read this out loud to students at the end)
+============================================================
+
+1. createElement("tag") builds a new element - but it's NOT on
+   the page yet.
+2. appendChild(element) actually places that new element onto
+   the page, as the last child of a chosen parent.
+3. removeChild(childElement) removes a specific child - called
+   on the PARENT.
+4. .remove() is the simpler modern way - called directly on the
+   element you want gone.
+============================================================
+-->

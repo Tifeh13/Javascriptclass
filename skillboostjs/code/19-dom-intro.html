@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+============================================================
+6. DOM MANIPULATION - INTRO (BEGINNER LESSON)
+============================================================
+
+HOW TO USE THIS FILE:
+Open this file in a browser (double-click it, or right-click ->
+Open With -> Chrome). Then open DevTools (press F12 or right-click
+-> Inspect) and click the "Console" tab - that's where
+console.log() output will show up for this lesson.
+============================================================
+-->
+<html>
+<head>
+<title>DOM Intro</title>
+</head>
+<body>
+
+  <h1 id="main-title">Hello DOM!</h1>
+  <p>Open the browser console (F12) to follow this lesson.</p>
+
+<script>
+  // ------------------------------------------------------------
+  // PART 1: WHAT IS THE DOM? (in the simplest way possible)
+  // ------------------------------------------------------------
+  //
+  // Imagine your webpage as a family tree. The <html> tag is the
+  // grandparent, <body> is a parent, and every <h1>, <p>, <div>
+  // inside it are the children. That whole family tree, as JS
+  // sees it, is called the DOM (Document Object Model).
+  //
+  // JavaScript can use the DOM to REACH INTO the page and read
+  // or change anything on it - text, colors, even create or
+  // delete whole elements.
+
+
+  // ------------------------------------------------------------
+  // PART 2: "document" - YOUR DOOR INTO THE PAGE
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW AND CHECK THE CONSOLE:
+
+  // console.log(document);
+  // // "document" represents the ENTIRE webpage. Everything you
+  // // do to change the page starts with "document".
+
+
+  // ------------------------------------------------------------
+  // PART 3: A QUICK TASTE - CHANGING TEXT ON THE PAGE
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let title = document.getElementById("main-title");
+  // title.textContent = "JavaScript just changed me!";
+  //
+  // // We'll cover getElementById and textContent properly in the
+  // // next lessons - this is just a sneak peek that JS can
+  // // directly change what's on the screen, LIVE, without
+  // // reloading the page.
+
+</script>
+
+</body>
+</html>
+
+
+<!--
+============================================================
+QUICK SUMMARY (read this out loud to students at the end)
+============================================================
+
+1. The DOM is the "family tree" of a webpage that JS can read
+   and change.
+2. "document" is how JS reaches into the page.
+3. JS can change what's on screen LIVE, without a page reload -
+   that's the whole power of DOM manipulation.
+============================================================
+-->

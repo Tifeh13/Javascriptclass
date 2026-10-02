@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+============================================================
+8. MODIFYING ELEMENTS (BEGINNER LESSON)
+============================================================
+Open this file in a browser. Uncomment ONE block at a time in
+the <script>, save, and REFRESH the page to see the change.
+============================================================
+-->
+<html>
+<head>
+<title>Modifying Elements</title>
+<style>
+  .highlight { background-color: yellow; }
+</style>
+</head>
+<body>
+
+  <h1 id="title">Original Title</h1>
+  <p id="description">This is the original paragraph.</p>
+  <img id="photo" src="" alt="A placeholder image" width="150">
+  <div id="box">I am a box</div>
+
+<script>
+  // ------------------------------------------------------------
+  // PART 1: textContent (change PLAIN TEXT only)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let title = document.getElementById("title");
+  // title.textContent = "JavaScript Changed This Title!";
+  //
+  // // textContent is the SAFEST way to change text - it treats
+  // // everything as plain text, even if it looks like HTML tags.
+
+
+  // ------------------------------------------------------------
+  // PART 2: innerHTML (change text AND add real HTML)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let description = document.getElementById("description");
+  // description.innerHTML = "This is <strong>bold</strong> and <em>italic</em>!";
+  //
+  // // Unlike textContent, innerHTML actually BUILDS new HTML
+  // // elements from the text you give it. Use this when you
+  // // genuinely need to insert HTML tags, not just plain text.
+
+
+  // ------------------------------------------------------------
+  // PART 3: innerText (similar to textContent, but "visual-aware")
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let description = document.getElementById("description");
+  // description.innerText = "innerText respects visible styling, like hidden elements.";
+  //
+  // // For most beginner purposes, textContent and innerText do
+  // // the same job. textContent is slightly faster and more
+  // // predictable, so prefer it unless you specifically need
+  // // innerText's visual awareness.
+
+
+  // ------------------------------------------------------------
+  // PART 4: setAttribute (change an element's ATTRIBUTES)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let photo = document.getElementById("photo");
+  // photo.setAttribute("src", "https://via.placeholder.com/150");
+  // photo.setAttribute("alt", "A placeholder photo set by JS");
+  //
+  // // setAttribute(attributeName, newValue) changes any HTML
+  // // attribute - src, alt, href, placeholder, disabled, etc.
+
+
+  // ------------------------------------------------------------
+  // PART 5: classList (add/remove/toggle CSS classes)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, AND REFRESH THE PAGE:
+
+  // let box = document.getElementById("box");
+  //
+  // box.classList.add("highlight");       // adds the class
+  // // box.classList.remove("highlight");  // removes the class
+  // // box.classList.toggle("highlight");  // adds it if missing, removes it if present
+  //
+  // console.log(box.classList.contains("highlight"));  // true/false check
+
+</script>
+
+</body>
+</html>
+
+
+<!--
+============================================================
+PART 6: TRY IT YOURSELF (give this to students as a task)
+============================================================
+
+1. Change the <h1> text using textContent.
+2. Use innerHTML to make part of the paragraph bold.
+3. Use setAttribute to change the image's "width" to 300.
+4. Use classList.toggle to make the box highlight turn on and
+   off (you'll need to run this part more than once to see it
+   toggle, since a page refresh resets it).
+
+Write your answer inside the <script> tag, below this comment.
+
+
+============================================================
+QUICK SUMMARY (read this out loud to students at the end)
+============================================================
+
+1. textContent -> changes plain text only (safest option).
+2. innerHTML -> changes text AND can insert real HTML tags.
+3. innerText -> similar to textContent, but visual-aware.
+4. setAttribute(name, value) -> changes any HTML attribute.
+5. classList.add/remove/toggle -> manage CSS classes on an element.
+============================================================
+-->

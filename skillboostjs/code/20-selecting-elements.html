@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+============================================================
+7. SELECTING ELEMENTS (BEGINNER LESSON)
+============================================================
+Open this file in a browser, then open DevTools (F12) -> Console
+tab to see the output of each example.
+============================================================
+-->
+<html>
+<head>
+<title>Selecting Elements</title>
+</head>
+<body>
+
+  <h1 id="title">Welcome to SkillBoost</h1>
+  <p class="info">This is paragraph one.</p>
+  <p class="info">This is paragraph two.</p>
+  <button class="btn">Click me</button>
+
+<script>
+  // ------------------------------------------------------------
+  // PART 1: getElementById (grab ONE element, by its unique id)
+  // ------------------------------------------------------------
+  //
+  // An "id" should only be used ONCE per page - it's meant to be
+  // unique, like a fingerprint for one specific element.
+  //
+  // UNCOMMENT BELOW AND CHECK THE CONSOLE:
+
+  // let title = document.getElementById("title");
+  // console.log(title);
+
+
+  // ------------------------------------------------------------
+  // PART 2: querySelector (grab the FIRST match using CSS rules)
+  // ------------------------------------------------------------
+  //
+  // querySelector uses the SAME selector style as CSS:
+  //   "#id"       -> select by id
+  //   ".class"     -> select by class
+  //   "tagname"    -> select by tag (like "p" or "button")
+  //
+  // It only ever grabs the FIRST matching element on the page.
+  //
+  // UNCOMMENT BELOW AND CHECK THE CONSOLE:
+
+  // let firstParagraph = document.querySelector(".info");
+  // console.log(firstParagraph);
+  // // Even though there are TWO paragraphs with class "info",
+  // // this only grabs the FIRST one.
+  //
+  // let byId = document.querySelector("#title");
+  // console.log(byId);   // same result as getElementById("title")
+
+
+  // ------------------------------------------------------------
+  // PART 3: querySelectorAll (grab EVERY matching element)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW AND CHECK THE CONSOLE:
+
+  // let allParagraphs = document.querySelectorAll(".info");
+  // console.log(allParagraphs);
+  // // This returns a LIST of all matching elements (called a
+  // // NodeList), not just one.
+  //
+  // allParagraphs.forEach(function (p) {
+  //   console.log(p.textContent);
+  // });
+  // // .forEach() lets us loop through the list and do something
+  // // with EACH matched element.
+
+
+  // ------------------------------------------------------------
+  // PART 4: WHICH ONE SHOULD YOU USE?
+  // ------------------------------------------------------------
+  //
+  // - getElementById  -> fastest, but ONLY works with ids
+  // - querySelector    -> most flexible, grabs the FIRST match
+  // - querySelectorAll -> grabs EVERY match, as a list
+  //
+  // In modern JavaScript, querySelector/querySelectorAll are
+  // used the most, because they understand any CSS selector.
+
+</script>
+
+</body>
+</html>
+
+
+<!--
+============================================================
+PART 5: TRY IT YOURSELF (give this to students as a task)
+============================================================
+
+1. Use getElementById to grab the button and log it to console.
+2. Use querySelector to grab the button using its class instead.
+3. Use querySelectorAll to grab both paragraphs and log each
+   one's text using a loop.
+
+Write your answer inside the <script> tag, below this comment.
+
+
+============================================================
+QUICK SUMMARY (read this out loud to students at the end)
+============================================================
+
+1. getElementById("id") grabs ONE element by its unique id.
+2. querySelector("css-selector") grabs the FIRST matching element.
+3. querySelectorAll("css-selector") grabs ALL matching elements,
+   as a list you can loop through.
+============================================================
+-->

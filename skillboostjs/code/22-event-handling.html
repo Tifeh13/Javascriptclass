@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+============================================================
+9. EVENT HANDLING (BEGINNER LESSON)
+============================================================
+Open this file in a browser, open DevTools (F12) -> Console,
+then actually CLICK the buttons on the page to see events fire.
+============================================================
+-->
+<html>
+<head>
+<title>Event Handling</title>
+</head>
+<body>
+
+  <h1>Event Handling Demo</h1>
+
+  <button id="greet-btn">Click Me</button>
+
+  <input id="name-input" type="text" placeholder="Type your name">
+
+  <ul id="task-list">
+    <li>Buy groceries <button class="delete-btn">Delete</button></li>
+    <li>Walk the dog <button class="delete-btn">Delete</button></li>
+    <li>Do homework <button class="delete-btn">Delete</button></li>
+  </ul>
+
+<script>
+  // ------------------------------------------------------------
+  // PART 1: WHAT IS AN EVENT? (in the simplest way possible)
+  // ------------------------------------------------------------
+  //
+  // An event is something that HAPPENS on the page - a click, a
+  // key press, typing in a box, the mouse moving, the page
+  // loading, etc. JavaScript can "listen" for these events and
+  // react to them.
+
+
+  // ------------------------------------------------------------
+  // PART 2: addEventListener (the main way to listen for events)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, REFRESH, THEN CLICK THE BUTTON:
+
+  // let button = document.getElementById("greet-btn");
+  //
+  // button.addEventListener("click", function () {
+  //   console.log("Button was clicked!");
+  // });
+  //
+  // // addEventListener(eventType, functionToRun) attaches a
+  // // listener. "click" is the event type. Whenever that event
+  // // happens on this element, the function runs.
+
+
+  // ------------------------------------------------------------
+  // PART 3: THE EVENT OBJECT (details about what happened)
+  // ------------------------------------------------------------
+  //
+  // UNCOMMENT BELOW, SAVE, REFRESH, THEN TYPE IN THE INPUT BOX:
+
+  // let input = document.getElementById("name-input");
+  //
+  // input.addEventListener("input", function (event) {
+  //   console.log("You typed: " + event.target.value);
+  // });
+  //
+  // // The function automatically receives an "event" object as
+  // // its first argument. event.target is the element the event
+  // // happened ON, and .value reads its current text.
+
+
+  // ------------------------------------------------------------
+  // PART 4: COMMON EVENT TYPES
+  // ------------------------------------------------------------
+  //
+  // "click"      -> element was clicked
+  // "input"      -> text box content changed (fires on every keystroke)
+  // "submit"     -> a form was submitted
+  // "mouseover"  -> mouse moved onto an element
+  // "keydown"    -> a key was pressed down
+
+
+  // ------------------------------------------------------------
+  // PART 5: EVENT DELEGATION (listening smartly on a PARENT)
+  // ------------------------------------------------------------
+  //
+  // Instead of adding a separate listener to EVERY delete
+  // button (which breaks if new buttons get added later), we
+  // can listen on the PARENT and check WHICH child was clicked.
+  //
+  // UNCOMMENT BELOW, SAVE, REFRESH, THEN CLICK ANY "Delete" BUTTON:
+
+  // let list = document.getElementById("task-list");
+  //
+  // list.addEventListener("click", function (event) {
+  //   if (event.target.classList.contains("delete-btn")) {
+  //     // event.target is whichever exact element was clicked
+  //     event.target.parentElement.remove();
+  //     // .parentElement grabs the <li> that button is inside,
+  //     // then .remove() deletes that whole <li> from the page
+  //   }
+  // });
+  //
+  // // This ONE listener on the parent <ul> handles clicks on
+  // // ALL current AND future delete buttons - that's the power
+  // // of event delegation.
+
+</script>
+
+</body>
+</html>
+
+
+<!--
+============================================================
+PART 6: TRY IT YOURSELF (give this to students as a task)
+============================================================
+
+1. Add a click listener to the button that changes the <h1>
+   text when clicked.
+2. Add an "input" listener to the text box that shows a live
+   greeting like "Hello, Ade!" as the student types.
+3. Using event delegation on the <ul>, make each "Delete"
+   button remove its own list item when clicked.
+
+Write your answer inside the <script> tag, below this comment.
+
+
+============================================================
+QUICK SUMMARY (read this out loud to students at the end)
+============================================================
+
+1. An event is something that happens on the page (click, type,
+   submit, etc).
+2. addEventListener(eventType, function) is how we listen for
+   and react to events.
+3. The event object (passed into the function) tells us details,
+   like event.target (the element it happened on).
+4. Event delegation = listening on a PARENT element instead of
+   every child, using event.target to check which child was
+   actually involved.
+============================================================
+-->
